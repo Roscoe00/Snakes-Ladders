@@ -1,0 +1,25 @@
+#board {
+   width: 300px;
+   display: grid;
+   grid-template-areas: 
+   "grid__99 grid__98 grid__97 grid__96 grid__95 grid__94 grid__93 grid__92 grid__91 grid__90"
+   "grid__80 grid__81 grid__82 grid__83 grid__84 grid__85 grid__86 grid__87 grid__88 grid__89"
+   "grid__79 grid__78 grid__77 grid__76 grid__75 grid__74 grid__73 grid__72 grid__71 grid__70"
+   "grid__60 grid__61 grid__62 grid__63 grid__64 grid__65 grid__66 grid__67 grid__68 grid__69"
+   "grid__59 grid__58 grid__57 grid__56 grid__55 grid__54 grid__53 grid__52 grid__51 grid__50"
+   "grid__40 grid__41 grid__42 grid__43 grid__44 grid__45 grid__46 grid__47 grid__48 grid__49"
+   "grid__39 grid__38 grid__37 grid__36 grid__35 grid__34 grid__33 grid__32 grid__31 grid__30"
+   "grid__20 grid__21 grid__22 grid__23 grid__24 grid__25 grid__26 grid__27 grid__28 grid__29"
+   "grid__19 grid__18 grid__17 grid__16 grid__15 grid__14 grid__13 grid__12 grid__11 grid__10"
+   "grid__0 grid__1 grid__2 grid__3 grid__4 grid__5 grid__6 grid__7 grid__8 grid__9";
+   @for $index from 0 through 99 {
+      #grid__#{$index}{
+         grid-area: grid__#{$index};
+      }
+   }
+   div{
+      border: 1px solid black;
+      width: 30px;
+      height: 30px;
+   }
+}
