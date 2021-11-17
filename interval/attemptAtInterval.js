@@ -15,11 +15,6 @@ playGrid.innerHTML = createGrid();
 let totalRoll = 0;
 let previousTotalRoll=0;
 
-const betweenPostion = ()=>{
-for (i=0;i<totalRoll-previousTotalRoll;i++){
-      movePlayerPosition(previousTotalRoll+i,previousTotalRoll+i+1)
-   }
-}
 
 rollDie.addEventListener("click",()=> {
    previousTotalRoll=totalRoll
@@ -27,14 +22,17 @@ rollDie.addEventListener("click",()=> {
    const dieResult = Math.ceil(Math.random()*6)
    rollDisplay.innerHTML = `${dieResult}`
    totalRoll=totalRoll+dieResult
-   if (totalRoll>99){
-      totalRoll=99
+   const betweenPostion = ()=>{
+      for (i=0;i<totalRoll-previousTotalRoll;i++){
+        
+            console.log(`oneRun${[i]}`)
+            
+            let timeTillExecute = (i+1)*1000
+            console.log(timeTillExecute)
+            setTimeout(movePlayerPosition(previousTotalRoll+i,previousTotalRoll+i+1),timeTillExecute)
+         }
+      }
       betweenPostion()
-      // alert("You win!")
-      // startPosition()
-   }else{
-      betweenPostion()
-   }
    // newPosition(totalRoll)
    // betweenPostion()
 })

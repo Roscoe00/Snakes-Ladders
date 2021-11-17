@@ -314,3 +314,7 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+.player1 {
+  background-color: red;
+}
