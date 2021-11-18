@@ -22,18 +22,7 @@ rollDie.addEventListener("click",()=> {
    const dieResult = Math.ceil(Math.random()*6)
    rollDisplay.innerHTML = `${dieResult}`
    totalRoll=totalRoll+dieResult
-   const betweenPostion = ()=>{
-      for (i=0;i<totalRoll-previousTotalRoll;i++){
-        
-            console.log(`oneRun${[i]}`)
-            
-            let timeTillExecute = (i+1)*1000
-            console.log(timeTillExecute)
-            setTimeout(movePlayerPosition(previousTotalRoll+i,previousTotalRoll+i+1),timeTillExecute)
-         }
-      }
-      betweenPostion()
-   // newPosition(totalRoll)
+      betweenPosition(previousTotalRoll)
    // betweenPostion()
 })
 
@@ -57,13 +46,12 @@ const movePlayerPosition = (oldNum,newNum) =>{
    oldPosition(oldNum)
    newPosition(newNum)
 }
-// const betweenPostion = ()=>{
-//    for (i=0;i<3;i++){
-//       oldPosition(0)
-//       console.log("oneRun")
-//       newPosition(0)
-//    }
-// }
+const betweenPosition = (num)=>{
+   for (i=0;i<totalRoll-previousTotalRoll;i++){
+      setTimeout(function() {movePlayerPosition(num,num+i)}, i*1000)
+   }
+}
+// setTimeout(function() {betweenPostion(previousTotalRoll+i,previousTotalRoll+i+1)},timeTillExecute)
 // for (let i -0; i<playGrid.clientHeight; i++){
 //    rollDie.addEventListener("click",()=> {
 //       const dieResult = Math.ceil(Math.random()*6)

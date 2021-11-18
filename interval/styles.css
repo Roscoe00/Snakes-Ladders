@@ -1,6 +1,5 @@
 #outer__board {
   display: block;
-  margin: auto;
   width: 1000px;
   height: 1000px;
 }
@@ -334,7 +333,7 @@
 }
 
 #board {
-  background-image: url(./boardBackground.PNG);
+  background-image: url(../boardBackground.PNG);
   background-size: cover;
 }
 

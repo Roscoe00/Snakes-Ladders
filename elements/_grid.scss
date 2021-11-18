@@ -1,5 +1,13 @@
+#outer__board {
+   display: block;
+   margin: auto;
+   width: 1000px;
+   height: 1000px;
+}
+
 #board {
-   width: 300px;
+   width: 100%;
+   height: 100%;
    display: grid;
    grid-template-areas: 
    "grid__99 grid__98 grid__97 grid__96 grid__95 grid__94 grid__93 grid__92 grid__91 grid__90"
@@ -18,8 +26,11 @@
       }
    }
    div{
-      border: 1px solid black;
-      width: 30px;
-      height: 30px;
+      // border: 1px solid black;
+      font-size: 20px;
+      color: white;
+      width: 100%;
+      height: 100%;
+      border-radius: 100%;
    }
 }

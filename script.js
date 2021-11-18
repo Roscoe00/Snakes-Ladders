@@ -5,7 +5,7 @@ const rollDisplay = document.querySelector("#dice__display")
 const createGrid = () => {
    let divs = ""
    for (i=0; i<100; i++) {
-      divs = divs + `<div id="grid__${i}"></div>`
+      divs = divs + `<div id="grid__${i}">${i+1}</div>`
    }
    return divs   
 }
@@ -27,6 +27,7 @@ rollDie.addEventListener("click",()=> {
    const dieResult = Math.ceil(Math.random()*6)
    rollDisplay.innerHTML = `${dieResult}`
    totalRoll=totalRoll+dieResult
+   
    if (totalRoll>99){
       totalRoll=99
       betweenPostion()
@@ -34,6 +35,8 @@ rollDie.addEventListener("click",()=> {
       // startPosition()
    }else{
       betweenPostion()
+      ladderCheck(totalRoll)
+      snakeCheck(totalRoll)
    }
    // newPosition(totalRoll)
    // betweenPostion()
@@ -59,17 +62,50 @@ const movePlayerPosition = (oldNum,newNum) =>{
    oldPosition(oldNum)
    newPosition(newNum)
 }
-// const betweenPostion = ()=>{
-//    for (i=0;i<3;i++){
-//       oldPosition(0)
-//       console.log("oneRun")
-//       newPosition(0)
-//    }
-// }
-// for (let i -0; i<playGrid.clientHeight; i++){
-//    rollDie.addEventListener("click",()=> {
-//       const dieResult = Math.ceil(Math.random()*6)
-//       rollDisplay.innerHTML = `${dieResult}`
 
-//    })
-// }
+
+// ladders 3 to 24, 12 to 74, 20 to 39, 42 to 83, 48 to 64, 71 to 89
+//snakes 17 to 1, 43 to 23, 49 to 13, 52 to 34, 87 to 75, 98 to 62
+
+const ladderCheck = (position) => {
+   if (position===3){
+   totalRoll=24,
+   movePlayerPosition(3,24)
+   }else if (position===12){
+      totalRoll=74,
+   movePlayerPosition(12,74)
+   }else if (position===20){
+      totalRoll=39,
+   movePlayerPosition(20,39)
+   }else if (position===42){
+      totalRoll=83,
+   movePlayerPosition(42,83)
+   }else if (position===48){
+      totalRoll=64,
+   movePlayerPosition(48,64)
+   }else if (position===71){
+      totalRoll=89,
+   movePlayerPosition(71,89)
+   }
+}
+const snakeCheck = (position) => {
+   if (position===17){
+   totalRoll=1,
+   movePlayerPosition(17,1)
+   }else if (position===43){
+      totalRoll=23,
+   movePlayerPosition(43,23)
+   }else if (position===49){
+      totalRoll=13,
+   movePlayerPosition(49,13)
+   }else if (position===52){
+      totalRoll=34,
+   movePlayerPosition(52,34)
+   }else if (position===87){
+      totalRoll=75,
+   movePlayerPosition(87,75)
+   }else if (position===98){
+      totalRoll=62,
+   movePlayerPosition(98,62)
+   }
+}

@@ -1,5 +1,5 @@
-@import "./elements/grid";
-@import "./elements/button";
+@import "../elements/grid";
+@import "../elements/button";
 
 
 * {
@@ -13,7 +13,7 @@
 }
 
 #board {
-   background-image: url(./boardBackground.PNG);
+   background-image: url(../boardBackground.PNG);
    background-size: cover;
 }
 
