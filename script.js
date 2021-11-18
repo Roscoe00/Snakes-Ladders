@@ -5,7 +5,7 @@ const rollDisplay = document.querySelector("#dice__display")
 const createGrid = () => {
    let divs = ""
    for (i=0; i<100; i++) {
-      divs = divs + `<div id="grid__${i}">${i+1}</div>`
+      divs = divs + `<div id="grid__${i}"></div>`
    }
    return divs   
 }
@@ -25,7 +25,12 @@ rollDie.addEventListener("click",()=> {
    previousTotalRoll=totalRoll
    // oldPosition(previousTotalRoll)
    const dieResult = Math.ceil(Math.random()*6)
-   rollDisplay.innerHTML = `${dieResult}`
+ 
+   //=================================
+   // rollDisplay.innerHTML = `${dieResult}`
+   rollPicture(dieResult)
+   //=================================
+
    totalRoll=totalRoll+dieResult
    
    if (totalRoll>99){
@@ -42,6 +47,21 @@ rollDie.addEventListener("click",()=> {
    // betweenPostion()
 })
 
+let oldDieRoll=-1;
+let dieImage=document.createElement('img')
+const rollPicture = (dieNumber) =>{
+   if (oldDieRoll>0) {
+      document.querySelector("#dice__display").removeChild(dieImage)
+      dieImage = document.createElement('img')
+      dieImage.src = `./pictures/die${dieNumber}.PNG`
+      document.querySelector("#dice__display").appendChild(dieImage)
+   }else{
+   dieImage = document.createElement('img')
+   dieImage.src = `./pictures/die${dieNumber}.PNG`
+   document.querySelector("#dice__display").appendChild(dieImage)
+   return oldDieRoll=`${dieNumber}`
+ }
+}
 
 const startPosition = ()=>{
    const g = document.getElementById("grid__0")
