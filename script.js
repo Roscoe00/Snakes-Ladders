@@ -5,7 +5,7 @@ const rollDisplay = document.querySelector("#dice__display")
 const createGrid = () => {
    let divs = ""
    for (i=0; i<100; i++) {
-      divs = divs + `<div id="grid__${i}"></div>`
+      divs = divs + `<div id="grid__${i}">${i+1}</div>`
    }
    return divs   
 }
@@ -15,11 +15,11 @@ playGrid.innerHTML = createGrid();
 let totalRoll = 0;
 let previousTotalRoll=0;
 
-const betweenPostion = ()=>{
-for (i=0;i<totalRoll-previousTotalRoll;i++){
-      movePlayerPosition(previousTotalRoll+i,previousTotalRoll+i+1)
-   }
-}
+// const betweenPostion = ()=>{
+// for (i=0;i<totalRoll-previousTotalRoll;i++){
+//       movePlayerPosition(previousTotalRoll+i,previousTotalRoll+i+1)
+//    }
+// }
 
 rollDie.addEventListener("click",()=> {
    previousTotalRoll=totalRoll
@@ -35,17 +35,32 @@ rollDie.addEventListener("click",()=> {
    
    if (totalRoll>99){
       totalRoll=99
-      betweenPostion()
+      for (i=0;i<totalRoll-previousTotalRoll;i++){
+         betweenPosition(previousTotalRoll+i,i)
+         console.log(previousTotalRoll+i)
+         console.log(totalRoll)
+      }
+      // betweenPostion()
       // alert("You win!")
       // startPosition()
    }else{
-      betweenPostion()
-      ladderCheck(totalRoll)
-      snakeCheck(totalRoll)
+      for (i=0;i<totalRoll-previousTotalRoll;i++){
+         betweenPosition(previousTotalRoll+i,i)
+         console.log(previousTotalRoll+i)
+         console.log(totalRoll)
+      }
+      setTimeout(()=>{ladderCheck(totalRoll)}, dieResult*500)
+      setTimeout(()=>{snakeCheck(totalRoll)}, dieResult*500)
+      // snakeCheck(totalRoll)
    }
+      
+      
+      // snakeCheck(totalRoll)
+      // betweenPostion()
    // newPosition(totalRoll)
-   // betweenPostion()
+   // betweenPostion()  
 })
+
 
 let oldDieRoll=-1;
 let dieImage=document.createElement('img')
@@ -82,7 +97,9 @@ const movePlayerPosition = (oldNum,newNum) =>{
    oldPosition(oldNum)
    newPosition(newNum)
 }
-
+const betweenPosition = (num,i) => {
+   setTimeout(()=>{movePlayerPosition(num,num+1)}, i*500)
+}
 
 // ladders 3 to 24, 12 to 74, 20 to 39, 42 to 83, 48 to 64, 71 to 89
 //snakes 17 to 1, 43 to 23, 49 to 13, 52 to 34, 87 to 75, 98 to 62
