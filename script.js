@@ -1,6 +1,7 @@
 const playGrid = document.querySelector("#board")
 const rollDie = document.querySelector("#die__roll")
 const rollDisplay = document.querySelector("#dice__display")
+const popupMessage = document.querySelector("#popup__message")
 
 const createGrid = () => {
    let divs = ""
@@ -15,24 +16,11 @@ playGrid.innerHTML = createGrid();
 let totalRoll = 0;
 let previousTotalRoll=0;
 
-// const betweenPostion = ()=>{
-// for (i=0;i<totalRoll-previousTotalRoll;i++){
-//       movePlayerPosition(previousTotalRoll+i,previousTotalRoll+i+1)
-//    }
-// }
-
 rollDie.addEventListener("click",()=> {
    previousTotalRoll=totalRoll
-   // oldPosition(previousTotalRoll)
    const dieResult = Math.ceil(Math.random()*6)
- 
-   //=================================
-   // rollDisplay.innerHTML = `${dieResult}`
    rollPicture(dieResult)
-   //=================================
-
    totalRoll=totalRoll+dieResult
-   
    if (totalRoll>99){
       totalRoll=99
       for (i=0;i<totalRoll-previousTotalRoll;i++){
@@ -40,9 +28,7 @@ rollDie.addEventListener("click",()=> {
          console.log(previousTotalRoll+i)
          console.log(totalRoll)
       }
-      // betweenPostion()
-      // alert("You win!")
-      // startPosition()
+      setTimeout(()=>{youWin()},(totalRoll-previousTotalRoll)*500)
    }else{
       for (i=0;i<totalRoll-previousTotalRoll;i++){
          betweenPosition(previousTotalRoll+i,i)
@@ -51,14 +37,7 @@ rollDie.addEventListener("click",()=> {
       }
       setTimeout(()=>{ladderCheck(totalRoll)}, dieResult*500)
       setTimeout(()=>{snakeCheck(totalRoll)}, dieResult*500)
-      // snakeCheck(totalRoll)
-   }
-      
-      
-      // snakeCheck(totalRoll)
-      // betweenPostion()
-   // newPosition(totalRoll)
-   // betweenPostion()  
+   }  
 })
 
 
@@ -71,24 +50,28 @@ const rollPicture = (dieNumber) =>{
       dieImage.src = `./pictures/die${dieNumber}.PNG`
       document.querySelector("#dice__display").appendChild(dieImage)
    }else{
-   dieImage = document.createElement('img')
-   dieImage.src = `./pictures/die${dieNumber}.PNG`
-   document.querySelector("#dice__display").appendChild(dieImage)
-   return oldDieRoll=`${dieNumber}`
- }
+      dieImage = document.createElement('img')
+      dieImage.src = `./pictures/die${dieNumber}.PNG`
+      document.querySelector("#dice__display").appendChild(dieImage)
+      return oldDieRoll=`${dieNumber}`
+   }
 }
 
 const startPosition = ()=>{
    const g = document.getElementById("grid__0")
    g.classList.add("player1")
 }
+
 startPosition()
+
+const youWin = ()=> {
+   popupMessage.innerHTML = "YOU WIN!"
+}
 
 const newPosition = (newNum)=>{
    const playerNew = document.getElementById(`grid__${newNum}`)
    playerNew.classList.add("player1")
 }
-
 const oldPosition = (oldNum)=>{
    const playerOld = document.getElementById(`grid__${oldNum}`)
    playerOld.classList.remove("player1")
@@ -100,9 +83,6 @@ const movePlayerPosition = (oldNum,newNum) =>{
 const betweenPosition = (num,i) => {
    setTimeout(()=>{movePlayerPosition(num,num+1)}, i*500)
 }
-
-// ladders 3 to 24, 12 to 74, 20 to 39, 42 to 83, 48 to 64, 71 to 89
-//snakes 17 to 1, 43 to 23, 49 to 13, 52 to 34, 87 to 75, 98 to 62
 
 const ladderCheck = (position) => {
    if (position===3){

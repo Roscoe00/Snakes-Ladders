@@ -8,6 +8,19 @@
    box-sizing: border-box;
 }
 
+#popup {
+   height: 60px;
+   width: 900px;
+   margin: auto;
+}
+
+#popup__message{
+   font-size: 30px;
+   color: white;
+   font-family: 'Prompt', sans-serif;
+   margin-left: auto;
+}
+
 .player1 {
    background-color: blue;
 }
@@ -15,6 +28,7 @@
 h1 {
    color: white;
    font-family: 'Prompt', sans-serif;
+   font-size: 50px;
    margin-top:40px;
    height: 60px;
    text-align: center;
@@ -43,4 +57,4 @@ footer {
       height: 160px;
    }
 }
-// linear-gradient(, ),
+
