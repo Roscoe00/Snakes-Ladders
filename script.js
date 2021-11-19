@@ -21,7 +21,7 @@ rollDie.addEventListener("click",()=> {
    const dieResult = Math.ceil(Math.random()*6)
    rollPicture(dieResult)
    totalRoll=totalRoll+dieResult
-   if (totalRoll>99){
+   if (totalRoll>=99){
       totalRoll=99
       for (i=0;i<totalRoll-previousTotalRoll;i++){
          betweenPosition(previousTotalRoll+i,i)
