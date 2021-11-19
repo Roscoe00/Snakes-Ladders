@@ -315,7 +315,7 @@
   text-align: center;
   padding: 30px;
   font-family: "Prompt", sans-serif;
-  color: white;
+  color: #fff;
   font-size: large;
   width: 80px;
   height: 80px;
@@ -323,7 +323,7 @@
 }
 
 #die__roll {
-  padding: 30px 60px;
+  padding: 15px 30px;
   background-color: #90a955;
   border: 3px solid #31572c;
   color: #31572c;
@@ -332,7 +332,8 @@
 }
 
 #die__roll:hover {
-  border: 5px solid #ecf39e;
+  border: 5px solid #fff;
+  color: #fff;
 }
 
 * {
@@ -349,17 +350,17 @@
 
 #popup__message {
   font-size: 30px;
-  color: white;
+  color: #fff;
   font-family: "Prompt", sans-serif;
   margin-left: auto;
 }
 
 .player1 {
-  background-color: blue;
+  background-color: #168aad;
 }
 
 h1 {
-  color: white;
+  color: #fff;
   font-family: "Prompt", sans-serif;
   font-size: 50px;
   margin-top: 40px;

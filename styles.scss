@@ -1,6 +1,6 @@
 @import "./elements/grid";
 @import "./elements/button";
-
+@import "./elements/variables";
 
 * {
    padding: 0;
@@ -16,18 +16,18 @@
 
 #popup__message{
    font-size: 30px;
-   color: white;
-   font-family: 'Prompt', sans-serif;
+   color: $fontColor;
+   font-family: $font;
    margin-left: auto;
 }
 
 .player1 {
-   background-color: blue;
+   background-color: $playerOneColor;
 }
 
 h1 {
-   color: white;
-   font-family: 'Prompt', sans-serif;
+   color: $fontColor;
+   font-family: $font;
    font-size: 50px;
    margin-top:40px;
    height: 60px;
