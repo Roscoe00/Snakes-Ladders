@@ -1,26 +1,69 @@
 @import "./elements/grid";
 @import "./elements/button";
-
+@import "./elements/variables";
 
 * {
    padding: 0;
    margin:0;
    box-sizing: border-box;
+   font-size:12px
+}
+
+#popup {
+   height: 3rem;
+   width: 32rem;
+   margin: auto;
+}
+
+#popup__message{
+   font-size: 1.5rem;
+   color: $fontColor;
+   font-family: $font;
+   margin-left: auto;
 }
 
 .player1 {
-   background-color: cyan;
+   background-color: $playerOneColor;
 }
 
-#board {
-   background-image: url(./boardBackground.PNG);
+h1 {
+   color: $fontColor;
+   font-family: $font;
+   font-size: 3rem;
+   margin-top:1rem;
+   // height: 3rem;
+   text-align: center;
+}
+
+body {
+   background-image: radial-gradient(rgba(54, 54, 54, 0.6), rgba(54, 54, 54, 0.6)), url(./pictures/forest.jpg);
    background-size: cover;
 }
 
+#board {
+   background-image: url(./pictures/boardBackground.PNG);
+   background-size: cover;
+   border: none;
+}
+
 footer {
+   height: 15rem;
    display: flex;
    flex-direction: row;
    align-items: center;
    justify-content: space-evenly;
+   #die__display{
+      display: inline-block;
+      width: 15rem;
+      height: 15rem;
+   }
 }
-// linear-gradient(, ),
+
+@media (min-width: 768px) { 
+   *{
+      font-size: 24px;
+   }
+   footer {
+      height: 10rem
+   }
+}

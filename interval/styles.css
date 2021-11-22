@@ -1,7 +1,8 @@
 #outer__board {
   display: block;
-  width: 1000px;
-  height: 1000px;
+  margin: auto;
+  width: 800px;
+  height: 800px;
 }
 
 #board {
@@ -311,15 +312,27 @@
   grid-area: grid__99;
 }
 #board div {
-  font-size: 20px;
+  text-align: center;
+  padding: 30px;
+  font-family: "Prompt", sans-serif;
   color: white;
-  width: 100%;
-  height: 100%;
+  font-size: large;
+  width: 80px;
+  height: 80px;
   border-radius: 100%;
 }
 
 #die__roll {
-  padding: 20px 40px;
+  padding: 30px 60px;
+  background-color: #90a955;
+  border: 3px solid #31572c;
+  color: #31572c;
+  font-size: 30px;
+  font-family: "Prompt", sans-serif;
+}
+
+#die__roll:hover {
+  border: 5px solid #ecf39e;
 }
 
 * {
@@ -329,17 +342,42 @@
 }
 
 .player1 {
-  background-color: cyan;
+  background-color: blue;
 }
 
-#board {
-  background-image: url(../boardBackground.PNG);
+h1 {
+  color: white;
+  font-family: "Prompt", sans-serif;
+  margin-top: 40px;
+  height: 60px;
+  text-align: center;
+}
+
+body {
+  background-image: radial-gradient(rgba(54, 54, 54, 0.6), rgba(54, 54, 54, 0.6)), url(../pictures/forest.jpg);
   background-size: cover;
 }
 
+#board {
+  background-image: url(../pictures/boardBackground.PNG);
+  background-size: cover;
+  border: none;
+}
+
+#dice__display {
+  font-size: 30px;
+  color: white;
+}
+
 footer {
+  height: 160px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
+}
+footer #die__display {
+  display: inline-block;
+  width: 160px;
+  height: 160px;
 }

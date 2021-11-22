@@ -9,18 +9,46 @@
 }
 
 .player1 {
-   background-color: cyan;
+   background-color: blue;
 }
 
-#board {
-   background-image: url(../boardBackground.PNG);
+h1 {
+   color: white;
+   font-family: 'Prompt', sans-serif;
+   margin-top:40px;
+   height: 60px;
+   text-align: center;
+}
+
+body {
+   background-image: radial-gradient(rgba(54, 54, 54, 0.6), rgba(54, 54, 54, 0.6)), url(../pictures/forest.jpg);
    background-size: cover;
 }
 
+#board {
+   background-image: url(../pictures/boardBackground.PNG);
+   background-size: cover;
+   border: none;
+}
+#dice__display {
+   font-size: 30px;
+   color: white;
+}
 footer {
+   height: 160px;
    display: flex;
    flex-direction: row;
    align-items: center;
    justify-content: space-evenly;
+   #die__display{
+      display: inline-block;
+      width: 160px;
+      height: 160px;
+   }
+}
+
+#message{
+   font-size: 50px;
+   color: white;
 }
 // linear-gradient(, ),
