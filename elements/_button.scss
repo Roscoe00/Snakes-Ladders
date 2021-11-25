@@ -12,3 +12,11 @@
    border: 5px solid $fontColor;
    color: $fontColor;
 }
+
+footer {
+   #die__roll:disabled{
+   border:3px solid $disabledBorder;
+   background-color: $disabledBackground;
+   color: $disabledBorder;
+   }
+}
