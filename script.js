@@ -17,8 +17,7 @@ playGrid.innerHTML = createGrid();
 
 
 //default number for the die roll
-// let currentPlayer= Math.ceil(Math.random()*2);
-let currentPlayer= 1
+let player= Math.floor(Math.random()*2);
 
 let totalRoll = [0,0];
 let previousTotalRoll=[0,0];
@@ -32,7 +31,7 @@ const startPosition = ()=>{
 
 startPosition()
 
-const dieRollMaster = (player)=>{
+const dieRollMaster = ()=>{
    rollDie.setAttribute('disabled', true);
    previousTotalRoll[player]=totalRoll[player]
    let dieResult = Math.ceil(Math.random()*6)
@@ -54,23 +53,18 @@ const dieRollMaster = (player)=>{
    //renables button after movement of player has finished
    setTimeout(()=>{rollDie.removeAttribute('disabled')}, dieResult*300)
    //if statement to swap player for next run
-   if (currentPlayer===1){
-      setTimeout(()=>{currentPlayer=2},dieResult*300)
-   }else if (currentPlayer===2){
-      setTimeout(()=>{currentPlayer=1}, dieResult*300)
+   if (player===0){
+      setTimeout(()=>{player+=1},dieResult*300)
+   }else if (player===1){
+      setTimeout(()=>{player-=1}, dieResult*300)
    }
 }
 
-
 // die function that rolls the die and moves the player
 rollDie.addEventListener("click",()=> {
-   if (currentPlayer===1){
-      dieRollMaster(0);
-   }else if (currentPlayer===2){
-      dieRollMaster(1);
-   }
+   dieRollMaster(player);
 })
-
+   
 
 
 //Edits image that appears for the die roll
@@ -99,7 +93,7 @@ const rollPicture = (dieNumber) =>{
 
 //You win message
 const youWin = ()=> {
-   popupMessage.innerHTML = `Player ${currentPlayer} Wins!`
+   popupMessage.innerHTML = `Player ${player+1} Wins!`
 }
 
 //========================
@@ -108,12 +102,12 @@ const youWin = ()=> {
 
 const newPosition = (newNum)=>{
    const playerNew = document.getElementById(`grid__${newNum}`)
-   playerNew.classList.add(`player${currentPlayer}`)
+   playerNew.classList.add(`player${player+1}`)
 }
 
 const oldPosition = (oldNum)=>{
    const playerOld = document.getElementById(`grid__${oldNum}`)
-   playerOld.classList.remove(`player${currentPlayer}`)
+   playerOld.classList.remove(`player${player+1}`)
 }
 
 const movePlayerPosition = (oldNum,newNum) =>{
