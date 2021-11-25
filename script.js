@@ -17,7 +17,8 @@ playGrid.innerHTML = createGrid();
 
 
 //default number for the die roll
-let currentPlayer= Math.ceil(Math.random()*2);
+// let currentPlayer= Math.ceil(Math.random()*2);
+let currentPlayer= 1
 
 let totalRoll = [0,0];
 let previousTotalRoll=[0,0];
@@ -52,18 +53,21 @@ const dieRollMaster = (player)=>{
    }  
    //renables button after movement of player has finished
    setTimeout(()=>{rollDie.removeAttribute('disabled')}, dieResult*300)
+   //if statement to swap player for next run
+   if (currentPlayer===1){
+      setTimeout(()=>{currentPlayer=2},dieResult*300)
+   }else if (currentPlayer===2){
+      setTimeout(()=>{currentPlayer=1}, dieResult*300)
+   }
 }
 
 
-
-//die function that rolls the die and moves the player
+// die function that rolls the die and moves the player
 rollDie.addEventListener("click",()=> {
    if (currentPlayer===1){
       dieRollMaster(0);
-      return currentPlayer=2
    }else if (currentPlayer===2){
       dieRollMaster(1);
-      return currentPlayer=1
    }
 })
 
