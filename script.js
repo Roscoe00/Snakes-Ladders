@@ -17,40 +17,54 @@ playGrid.innerHTML = createGrid();
 
 
 //default number for the die roll
-let totalRoll = 0;
-let previousTotalRoll=0;
+let currentPlayer= Math.ceil(Math.random()*2);
+
+let totalRoll = [0,0];
+let previousTotalRoll=[0,0];
 
 //sets player position to the start
 const startPosition = ()=>{
    const g = document.getElementById("grid__0")
    g.classList.add("player1")
+   g.classList.add("player2")
 }
 
 startPosition()
 
-//die function that rolls the die and moves the player
-rollDie.addEventListener("click",()=> {
-   //disables roll button till function is complete
+const dieRollMaster = (player)=>{
    rollDie.setAttribute('disabled', true);
-   previousTotalRoll=totalRoll
-   const dieResult = Math.ceil(Math.random()*6)
+   previousTotalRoll[player]=totalRoll[player]
+   let dieResult = Math.ceil(Math.random()*6)
    rollPicture(dieResult)
-   totalRoll=totalRoll+dieResult
-   if (totalRoll>=99){
-      totalRoll=99
-      for (i=0;i<totalRoll-previousTotalRoll;i++){
-         betweenPosition(previousTotalRoll+i,i)
+   totalRoll[player]=totalRoll[player]+dieResult
+   if (totalRoll[player]>=99){
+      totalRoll[player]=99
+      for (i=0;i<totalRoll[player]-previousTotalRoll[player];i++){
+         betweenPosition(previousTotalRoll[player]+i,i)
       }
-      setTimeout(()=>{youWin()},(totalRoll-previousTotalRoll)*500)
+      setTimeout(()=>{youWin()},(totalRoll[player]-previousTotalRoll[player])*300)
    }else{
-      for (i=0;i<totalRoll-previousTotalRoll;i++){
-         betweenPosition(previousTotalRoll+i,i)
+      for (i=0;i<totalRoll[player]-previousTotalRoll[player];i++){
+         betweenPosition(previousTotalRoll[player]+i,i)
       }
-      setTimeout(()=>{ladderCheck(totalRoll)}, dieResult*500)
-      setTimeout(()=>{snakeCheck(totalRoll)}, dieResult*500)
+      setTimeout(()=>{ladderCheck(totalRoll[player],player)}, dieResult*300)
+      setTimeout(()=>{snakeCheck(totalRoll[player],player)}, dieResult*300)
    }  
    //renables button after movement of player has finished
-   setTimeout(()=>{rollDie.removeAttribute('disabled')}, dieResult*500)
+   setTimeout(()=>{rollDie.removeAttribute('disabled')}, dieResult*300)
+}
+
+
+
+//die function that rolls the die and moves the player
+rollDie.addEventListener("click",()=> {
+   if (currentPlayer===1){
+      dieRollMaster(0);
+      return currentPlayer=2
+   }else if (currentPlayer===2){
+      dieRollMaster(1);
+      return currentPlayer=1
+   }
 })
 
 
@@ -81,7 +95,7 @@ const rollPicture = (dieNumber) =>{
 
 //You win message
 const youWin = ()=> {
-   popupMessage.innerHTML = "YOU WIN!"
+   popupMessage.innerHTML = `Player ${currentPlayer} Wins!`
 }
 
 //========================
@@ -90,12 +104,12 @@ const youWin = ()=> {
 
 const newPosition = (newNum)=>{
    const playerNew = document.getElementById(`grid__${newNum}`)
-   playerNew.classList.add("player1")
+   playerNew.classList.add(`player${currentPlayer}`)
 }
 
 const oldPosition = (oldNum)=>{
    const playerOld = document.getElementById(`grid__${oldNum}`)
-   playerOld.classList.remove("player1")
+   playerOld.classList.remove(`player${currentPlayer}`)
 }
 
 const movePlayerPosition = (oldNum,newNum) =>{
@@ -104,7 +118,7 @@ const movePlayerPosition = (oldNum,newNum) =>{
 }
 
 const betweenPosition = (num,i) => {
-   setTimeout(()=>{movePlayerPosition(num,num+1)}, i*500)
+   setTimeout(()=>{movePlayerPosition(num,num+1)}, i*300)
 }
 
 
@@ -112,46 +126,46 @@ const betweenPosition = (num,i) => {
 //==Snakes & ladders Check==
 //==========================
 
-const ladderCheck = (position) => {
+const ladderCheck = (position,player) => {
    if (position===3){
-   totalRoll=24,
+      totalRoll[player]=24,
    movePlayerPosition(3,24)
    }else if (position===12){
-      totalRoll=74,
+      totalRoll[player]=74,
    movePlayerPosition(12,74)
    }else if (position===20){
-      totalRoll=39,
+      totalRoll[player]=39,
    movePlayerPosition(20,39)
    }else if (position===42){
-      totalRoll=83,
+      totalRoll[player]=83,
    movePlayerPosition(42,83)
    }else if (position===48){
-      totalRoll=64,
+      totalRoll[player]=64,
    movePlayerPosition(48,64)
    }else if (position===71){
-      totalRoll=89,
+      totalRoll[player]=89,
    movePlayerPosition(71,89)
    }
 }
 
-const snakeCheck = (position) => {
+const snakeCheck = (position,player) => {
    if (position===17){
-   totalRoll=1,
+      totalRoll[player]=1,
    movePlayerPosition(17,1)
    }else if (position===43){
-      totalRoll=23,
+      totalRoll[player]=23,
    movePlayerPosition(43,23)
    }else if (position===49){
-      totalRoll=13,
+      totalRoll[player]=13,
    movePlayerPosition(49,13)
    }else if (position===52){
-      totalRoll=34,
+      totalRoll[player]=34,
    movePlayerPosition(52,34)
    }else if (position===87){
-      totalRoll=75,
+      totalRoll[player]=75,
    movePlayerPosition(87,75)
    }else if (position===98){
-      totalRoll=62,
+      totalRoll[player]=62,
    movePlayerPosition(98,62)
    }
 }
