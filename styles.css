@@ -336,6 +336,12 @@
   color: #fff;
 }
 
+footer #die__roll:disabled {
+  border: 3px solid #414141;
+  background-color: #5a6936;
+  color: #414141;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -354,6 +360,10 @@
   color: #fff;
   font-family: "Prompt", sans-serif;
   margin-left: auto;
+}
+
+.player2 {
+  background-color: #d9ed92;
 }
 
 .player1 {
@@ -394,7 +404,7 @@ footer #die__display {
 
 @media (min-width: 768px) {
   * {
-    font-size: 24px;
+    font-size: 22px;
   }
 
   footer {
